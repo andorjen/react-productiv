@@ -38,27 +38,31 @@ function EditableTodo({ todo, update, remove }) {
   return (
     <div className="EditableTodo">
 
-      if(isEditing) {
-        <TodoForm initialFormData={todo} handleSave={handleSave}/> 
+      {isEditing &&
+        <TodoForm initialFormData={todo} handleSave={handleSave} />
       }
-      
-      else{
-      <div className="mb-3">
-        <div className="float-right text-sm-right">
-          <button
-            className="EditableTodo-toggle btn-link btn btn-sm"
-            onClick={toggleEdit}>
-            Edit
-          </button>
-          <button
-            className="EditableTodo-delBtn btn-link btn btn-sm text-danger"
-            onClick={handleDelete}>
-            Del
-          </button>
-        </div>
-        <Todo props={todo}/>   
-      </div>
-    }
+
+      {!isEditing &&
+        <div className="mb-3">
+          <div className="float-right text-sm-right">
+            <button
+              className="EditableTodo-toggle btn-link btn btn-sm"
+              onClick={toggleEdit}>
+              Edit
+            </button>
+            <button
+              className="EditableTodo-delBtn btn-link btn btn-sm text-danger"
+              onClick={handleDelete}>
+              Del
+            </button>
+          </div>
+          <Todo
+            id={todo.id}
+            title={todo.title}
+            description={todo.description}
+            priority={todo.priority} />
+        </div>}
+
     </div>
   );
 }
