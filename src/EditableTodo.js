@@ -25,7 +25,7 @@ function EditableTodo({ todo, update, remove }) {
 
   /** Call remove fn passed to this. */
   function handleDelete() {
-    remove(id);
+    remove(todo.id);
   }
 
   /** Edit form saved; toggle isEditing and update in ancestor. */
@@ -39,7 +39,7 @@ function EditableTodo({ todo, update, remove }) {
     <div className="EditableTodo">
 
       if(isEditing) {
-        <TodoForm />
+        <TodoForm initialFormData={todo} handleSave={handleSave}/> 
       }
       
       else{
@@ -56,11 +56,12 @@ function EditableTodo({ todo, update, remove }) {
             Del
           </button>
         </div>
-        <Todo />
+        <Todo props={todo}/>   
       </div>
     }
     </div>
   );
 }
+// DOUBLE CHECK: Todo, does it work with passing in todo directly?
 
 export default EditableTodo;

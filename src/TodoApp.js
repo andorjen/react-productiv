@@ -15,18 +15,24 @@ import EditableTodoList from "./EditableTodoList";
  * App -> TodoApp -> { TodoForm, EditableTodoList }
  */
 
-function TodoApp() {
+function TodoApp({initialTodos}) {
+
+  const [todos, setTodos] = useState(initialTodos);
 
   /** add a new todo to list */
   function create(newTodo) {
+    const todo = {...newTodo, id: uuid()};
+    setTodos(todos=> [...todos, todo])
   }
 
   /** update a todo with updatedTodo */
   function update(updatedTodo) {
+    setTodos(todos.map(currTodo=>currTodo.id === updatedTodo.id ? updatedTodo : currTodo))
   }
 
   /** delete a todo by id */
   function remove(id) {
+    setTodos(todos.filter(todo=>todo.id !== id))
   }
 
   return (

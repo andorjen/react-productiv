@@ -8,10 +8,13 @@ import EditableTodo from "./EditableTodo";
  * - update(): fn to call to update a todo
  * - remove(): fn to call to remove a todo
  *
+ * State:
+ * - none
+ * 
  * TodoApp -> EditableTodoList -> [ EditableTodo, ... ]
  */
 
-function EditableTodoList() {
+function EditableTodoList({todos, update, remove}) {
   return (
     <div className="EditableTodo">
       {todos.map((todo) => {
