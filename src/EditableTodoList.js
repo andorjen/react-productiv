@@ -13,12 +13,15 @@ import EditableTodo from "./EditableTodo";
 
 function EditableTodoList() {
   return (
-      <div>
-        {/*   FIXME  */}
-        <EditableTodo />
-        <EditableTodo />
-        <EditableTodo />
-      </div>
+    <div className="EditableTodo">
+      {todos.map((todo) => {
+        return <EditableTodo
+          key={todo.id}
+          todo={todo}
+          update={update}
+          remove={remove} />
+      })}
+    </div>
   );
 }
 

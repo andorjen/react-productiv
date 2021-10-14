@@ -19,7 +19,12 @@ function TopTodo({todos}) {
       (acc, cur) => cur.priority < acc.priority ? cur : acc, todos[0]);
   const {id, title, description, priority} = top;
   
-  return <Todo id={id} title={title} description={description} priority={priority} />;
+  return <Todo
+      id={id}
+      title={title}
+      description={description}
+      priority={priority}
+    />;
 }
 
 export default TopTodo;
