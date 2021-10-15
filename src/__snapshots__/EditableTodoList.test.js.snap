@@ -3,7 +3,7 @@
 exports[`matches snapshot 1`] = `
 <div>
   <div
-    class="EditableTodo"
+    class="EditableTodoList"
   >
     <div
       class="EditableTodo"
