@@ -1,0 +1,8 @@
+.edit {
+    display: inline-block;
+}
+
+.eachTodo {
+    display: flex;
+    justify-content: space-between;
+}

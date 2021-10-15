@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Todo from "./Todo";
 import TodoForm from "./TodoForm";
+import "./EditableTodo.css";
 
 /** Show editable todo item.
  *
@@ -20,7 +21,7 @@ function EditableTodo({ todo, update, remove }) {
 
   /** Toggle if this is being edited */
   function toggleEdit() {
-    setIsEditing(!isEditing);
+    setIsEditing(isEditing=>!isEditing);
   }
 
   /** Call remove fn passed to this. */
@@ -43,8 +44,13 @@ function EditableTodo({ todo, update, remove }) {
       }
 
       {!isEditing &&
-        <div className="mb-3">
-          <div className="float-right text-sm-right">
+        <div className="mb-3 eachTodo">
+          <Todo 
+            id={todo.id}
+            title={todo.title}
+            description={todo.description}
+            priority={todo.priority} />
+          <div className="float-right text-sm-right edit">
             <button
               className="EditableTodo-toggle btn-link btn btn-sm"
               onClick={toggleEdit}>
@@ -56,16 +62,11 @@ function EditableTodo({ todo, update, remove }) {
               Del
             </button>
           </div>
-          <Todo
-            id={todo.id}
-            title={todo.title}
-            description={todo.description}
-            priority={todo.priority} />
         </div>}
 
     </div>
   );
 }
-// DOUBLE CHECK: Todo, does it work with passing in todo directly?
+
 
 export default EditableTodo;

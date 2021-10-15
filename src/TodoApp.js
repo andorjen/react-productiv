@@ -13,7 +13,7 @@ import TodoForm from './TodoForm';
  * State:
  * - todos: array of [ todo, ... ]
  *
- * App -> TodoApp -> { TodoForm, EditableTodoList }
+ * App -> TodoApp -> { TodoForm, EditableTodoList, TopTodo }
  */
 
 function TodoApp({ initialTodos }) {
@@ -28,12 +28,18 @@ function TodoApp({ initialTodos }) {
 
   /** update a todo with updatedTodo */
   function update(updatedTodo) {
-    setTodos(todos.map(currTodo => currTodo.id === updatedTodo.id ? updatedTodo : currTodo))
+    setTodos(previousTodos=> previousTodos.map(currTodo => (currTodo.id === updatedTodo.id) ? updatedTodo : currTodo)) //put conditions in () for readability
   }
 
   /** delete a todo by id */
   function remove(id) {
-    setTodos(todos.filter(todo => todo.id !== id))
+    setTodos(previousTodos=> previousTodos.filter(todo => todo.id !== id))  //use call back functions as it depend on previous state
+  }
+
+  const defaultFormData={
+    title: "",
+    description: "",
+    priority: 1
   }
 
   return (
@@ -63,7 +69,7 @@ function TodoApp({ initialTodos }) {
 
           <section>
             <h3 className="mb-3">Add Nü</h3>
-            <TodoForm initialFormData={{}} handleSave={create} />
+            <TodoForm initialFormData={defaultFormData} handleSave={create} />
           </section>
         </div>
 

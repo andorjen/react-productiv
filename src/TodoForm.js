@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 
-/** Form for adding.
+/** Form for adding/editing.
  *
  * Props:
  * - initialFormData
@@ -15,11 +15,12 @@ import React, { useState } from "react";
 
 function TodoForm({initialFormData, handleSave}) {
 
-  const [formData, setFormData] = useState(initialFormData);
+  const [formData, setFormData] = useState({...initialFormData}); // so we never mutate the obj comes from parent
 
   /** Update form input. */
   function handleChange(evt) { 
 
+    // formData.title="hello"; when mutating, only change formData, keeps initialFormData clean
     const {name, value} = evt.target;
     setFormData(previousData => ({
       ...previousData,
@@ -31,6 +32,7 @@ function TodoForm({initialFormData, handleSave}) {
   function handleSubmit(evt) { 
     evt.preventDefault();
     handleSave(formData);
+    setFormData({...initialFormData}); //use callback when it depends on the previous state
   }
 
   return (
@@ -38,6 +40,7 @@ function TodoForm({initialFormData, handleSave}) {
 
         <div className="form-group">
           <input
+              required
               id="newTodo-title"
               name="title"
               className="form-control"
@@ -50,6 +53,7 @@ function TodoForm({initialFormData, handleSave}) {
 
         <div className="form-group">
           <textarea
+              required
               id="newTodo-description"
               name="description"
               className="form-control"

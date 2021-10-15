@@ -6,7 +6,7 @@ import "./App.css";
 
 /** Site application.
  *
- * App -> TodoApp
+ * App -> {TodoApp, Footer}
  **/
 
 function App() {

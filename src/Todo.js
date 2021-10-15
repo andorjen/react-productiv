@@ -1,4 +1,5 @@
 import React from "react";
+import "./Todo.css"
 
 /** Simple presentation component for a todo.
  *
